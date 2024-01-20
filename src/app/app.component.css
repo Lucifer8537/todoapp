@@ -1,0 +1,54 @@
+.container {
+  background-color: hsl(235, 21%, 11%);
+  background-image: url("../assets/bg-desktop-dark.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  padding: 5% 30%;
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: fit-content;
+}
+.header-title {
+  color: white;
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: 20px;
+}
+.header-icon {
+}
+.create-task-container {
+  background-color: hsl(235, 24%, 19%);
+  padding: 20px 20px;
+  border-radius: 5px;
+  margin-top: 5%;
+  display: flex;
+}
+.create-task {
+  background: linear-gradient(
+    to right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+  border-radius: 50px;
+  padding: 8px;
+  margin-right: 20px;
+}
+.create-task-unactive {
+  background: transparent;
+  border-radius: 50px;
+  padding: 10px;
+  margin-right: 20px;
+  border: 2px solid hsl(234, 11%, 52%);
+}
+.create-task-input {
+  background: transparent;
+  font-family: "JosefinSans";
+  font-size: 20px;
+  outline: 0;
+  border: 0;
+  color: white;
+}
