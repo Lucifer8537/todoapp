@@ -14,4 +14,60 @@
       (keyup.enter)="onCreateTask()"
     />
   </div>
+  <div class="total-task-container">
+    <div
+      *ngIf="isComplete"
+      cdkDropList
+      (cdkDropListDropped)="onDropComplete($event)"
+    >
+      <ng-container
+        *ngFor="let complete of completedTask; let isFirstItem = first"
+      >
+        <div class="task-container complete-border" cdkDrag>
+          <div class="createdTask" (click)="onActive(complete)"></div>
+          <span class="completedTask">{{ complete }}</span>
+          <img
+            class="cross"
+            src="../assets/icon-cross.svg"
+            (click)="onRemove('complete', complete)"
+            alt="cross"
+          />
+        </div>
+      </ng-container>
+    </div>
+    <div
+      cdkDropList
+      *ngIf="isActive"
+      (cdkDropListDropped)="onDropActive($event)"
+    >
+      <ng-container *ngFor="let active of activeTask; let isFirstItem = first">
+        <div class="task-container complete-border" cdkDrag>
+          <div class="create-task" (click)="onComplete(active)"></div>
+          <span>{{ active }}</span>
+          <img
+            class="cross"
+            src="../assets/icon-cross.svg"
+            (click)="onRemove('active', active)"
+            alt="cross"
+          />
+        </div>
+      </ng-container>
+    </div>
+    <div class="footer-container">
+      <div class="items-left">{{ itemLeft }} items left</div>
+      <div class="filter-container">
+        <div class="filter">
+          <ng-container *ngFor="let f of filter">
+            <span
+              class="filter-item"
+              [class.checked]="f.checked"
+              (click)="onClickFilter(f.task)"
+              >{{ f.task }}</span
+            >
+          </ng-container>
+        </div>
+        <div class="clear" (click)="onClickClear()">Clear Completed</div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -3,8 +3,8 @@
   background-image: url("../assets/bg-desktop-dark.jpg");
   background-repeat: no-repeat;
   background-size: contain;
-  height: 100%;
-  padding: 5% 30%;
+  height: 89%;
+  padding: 5% 30% 5% 30%;
 }
 .header-container {
   display: flex;
@@ -27,6 +27,12 @@
   margin-top: 5%;
   display: flex;
   align-items: center;
+}
+.total-task-container {
+  display: grid;
+  background-color: hsl(235, 24%, 19%);
+  border-radius: 5px;
+  margin-top: 5%;
 }
 .create-task {
   background: transparent;
@@ -53,7 +59,83 @@
   border: 0;
   color: white;
 }
+.task-container {
+  background-color: hsl(235, 24%, 19%);
+  cursor: grab;
+  display: flex;
+  padding: 15px 20px;
+  font-size: 18px;
+  color: white;
+  align-items: center;
+}
+.completedTask {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+.createdTask {
+  border-radius: 50px;
+  cursor: pointer;
+  margin-right: 20px;
+  height: 21.6px;
+  width: 21.6px;
+  background: url("../assets/icon-check.svg"),
+    linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  opacity: 1;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.active-border {
+  border-top: 2px solid rgba(256, 256, 256, 0.1);
+}
+.complete-border {
+  border-bottom: 2px solid rgba(256, 256, 256, 0.1);
+}
+.footer-container {
+  padding: 20px 20px;
+  color: white;
+  font-weight: 200;
+  display: flex;
+  justify-content: space-between;
+}
+.filter-container {
+  display: flex;
+  gap: 80px;
+}
+.filter {
+  display: flex;
+  font-weight: 400;
+  gap: 25px;
+}
+.filter-item {
+  cursor: pointer;
+}
+.clear {
+  cursor: pointer;
+}
+.item-left,
+.filter-item,
+.clear {
+  opacity: 0.4;
+}
+.checked {
+  color: hsl(220, 98%, 61%);
+  opacity: 1;
+}
+
+.cross {
+  margin-left: auto;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.task-container:hover .cross {
+  opacity: 1;
+}
+
 .create-task:hover {
+  border: none;
+  height: 21.6px;
+  width: 21.6px;
   background: url("../assets/icon-check.svg"),
     linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
   opacity: 1;
