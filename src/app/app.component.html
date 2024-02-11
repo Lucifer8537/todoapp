@@ -4,11 +4,14 @@
     <img src="../assets/icon-sun.svg" alt="icon-sun" class="header-icon" />
   </div>
   <div class="create-task-container">
-    <img src="../assets/icon-check.svg" class="create-task" />
+    <!-- <img src="../assets/icon-check.svg" class="create-task" /> -->
+    <div class="create-task" (click)="onCreateTask()"></div>
     <input
       type="text"
       class="create-task-input"
       placeholder="Create a new todo..."
+      [(ngModel)]="newTask"
+      (keyup.enter)="onCreateTask()"
     />
   </div>
 </div>
