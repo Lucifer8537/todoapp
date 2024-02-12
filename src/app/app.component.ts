@@ -1,4 +1,8 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  CdkDragStart,
+  moveItemInArray,
+} from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 
 interface filterConfig {
@@ -13,6 +17,7 @@ interface filterConfig {
 export class AppComponent implements OnInit {
   newTask!: string;
   isTaskCreationFinal = false;
+  isDarkMode = !true;
   activeTask: string[] = [];
   completedTask: string[] = [];
   itemLeft!: number;
@@ -32,6 +37,7 @@ export class AppComponent implements OnInit {
   ];
   isActive = true;
   isComplete = true;
+  isDragging = false;
   ngOnInit(): void {
     this.completedTask = ['Complete online JavaScript course'];
     this.activeTask = [
@@ -47,8 +53,15 @@ export class AppComponent implements OnInit {
   onCreateTask = () => {
     if (!this.newTask || this.newTask.length === 0) return;
     console.log('newTask : ', this.newTask);
+    if (this.activeTask.includes(this.newTask)) {
+      this.activeTask = this.activeTask.filter(
+        (active) => active && active !== this.newTask
+      );
+    } else {
+      this.itemLeft++;
+    }
     this.activeTask.unshift(this.newTask);
-    this.itemLeft++;
+
     this.newTask = '';
     if (this.isTaskCreationFinal) this.isTaskCreationFinal = false;
   };
@@ -108,5 +121,17 @@ export class AppComponent implements OnInit {
       this.activeTask = this.activeTask.filter((act) => act && act !== task);
       this.itemLeft--;
     }
+  };
+  onChangeMode = () => {
+    this.isDarkMode = !this.isDarkMode;
+  };
+
+  onDragStarted = (event: CdkDragStart) => {
+    console.log(event);
+    this.isDragging = true;
+  };
+
+  onDragEnded = () => {
+    this.isDragging = false;
   };
 }

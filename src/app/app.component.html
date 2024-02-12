@@ -1,72 +1,101 @@
-<div class="container">
-  <div class="header-container">
-    <div class="header-title">TODO</div>
-    <img src="../assets/icon-sun.svg" alt="icon-sun" class="header-icon" />
-  </div>
-  <div class="create-task-container">
-    <!-- <img src="../assets/icon-check.svg" class="create-task" /> -->
-    <div class="create-task" (click)="onCreateTask()"></div>
-    <input
-      type="text"
-      class="create-task-input"
-      placeholder="Create a new todo..."
-      [(ngModel)]="newTask"
-      (keyup.enter)="onCreateTask()"
-    />
-  </div>
-  <div class="total-task-container">
-    <div
-      *ngIf="isComplete"
-      cdkDropList
-      (cdkDropListDropped)="onDropComplete($event)"
-    >
-      <ng-container
-        *ngFor="let complete of completedTask; let isFirstItem = first"
+<div
+  class="container"
+  [class.light-mode]="!isDarkMode"
+  [class.dark-mode]="isDarkMode"
+>
+  <div class="todo-container">
+    <div class="header-container">
+      <div class="header-title">TODO</div>
+      <img
+        *ngIf="isDarkMode"
+        src="../assets/icon-sun.svg"
+        alt="icon-sun"
+        class="header-icon"
+        (click)="onChangeMode()"
+      />
+      <img
+        *ngIf="!isDarkMode"
+        src="../assets/icon-moon.svg"
+        alt="icon-moon"
+        class="header-icon"
+        (click)="onChangeMode()"
+      />
+    </div>
+    <div class="create-task-container">
+      <!-- <img src="../assets/icon-check.svg" class="create-task" /> -->
+      <div class="create-task" (click)="onCreateTask()"></div>
+      <input
+        type="text"
+        class="create-task-input"
+        placeholder="Create a new todo..."
+        [(ngModel)]="newTask"
+        (keyup.enter)="onCreateTask()"
+      />
+    </div>
+    <div class="total-task-container">
+      <div
+        *ngIf="isComplete"
+        cdkDropList
+        (cdkDropListDropped)="onDropComplete($event)"
       >
-        <div class="task-container complete-border" cdkDrag>
-          <div class="createdTask" (click)="onActive(complete)"></div>
-          <span class="completedTask">{{ complete }}</span>
-          <img
-            class="cross"
-            src="../assets/icon-cross.svg"
-            (click)="onRemove('complete', complete)"
-            alt="cross"
-          />
+        <ng-container
+          *ngFor="let complete of completedTask; let isFirstItem = first"
+        >
+          <div
+            class="task-container complete-border"
+            [ngClass]="isDarkMode ? 'dark-task' : 'light-task'"
+            cdkDrag
+          >
+            <div class="createdTask" (click)="onActive(complete)"></div>
+            <span class="completedTask">{{ complete }}</span>
+            <img
+              class="cross"
+              src="../assets/icon-cross.svg"
+              (click)="onRemove('complete', complete)"
+              alt="cross"
+            />
+          </div>
+        </ng-container>
+      </div>
+      <div
+        cdkDropList
+        *ngIf="isActive"
+        (cdkDropListDropped)="onDropActive($event)"
+      >
+        <ng-container
+          *ngFor="let active of activeTask; let isFirstItem = first"
+        >
+          <div
+            class="task-container complete-border"
+            [ngClass]="isDarkMode ? 'dark-task' : 'light-task'"
+            cdkDrag
+          >
+            <div class="create-task" (click)="onComplete(active)"></div>
+            <span>{{ active }}</span>
+            <img
+              class="cross"
+              src="../assets/icon-cross.svg"
+              (click)="onRemove('active', active)"
+              alt="cross"
+            />
+          </div>
+        </ng-container>
+      </div>
+      <div class="footer-container">
+        <div class="items-left">{{ itemLeft }} items left</div>
+        <div class="filter-container">
+          <div class="filter">
+            <ng-container *ngFor="let f of filter">
+              <span
+                class="filter-item"
+                [class.checked]="f.checked"
+                (click)="onClickFilter(f.task)"
+                >{{ f.task }}</span
+              >
+            </ng-container>
+          </div>
+          <div class="clear" (click)="onClickClear()">Clear Completed</div>
         </div>
-      </ng-container>
-    </div>
-    <div
-      cdkDropList
-      *ngIf="isActive"
-      (cdkDropListDropped)="onDropActive($event)"
-    >
-      <ng-container *ngFor="let active of activeTask; let isFirstItem = first">
-        <div class="task-container complete-border" cdkDrag>
-          <div class="create-task" (click)="onComplete(active)"></div>
-          <span>{{ active }}</span>
-          <img
-            class="cross"
-            src="../assets/icon-cross.svg"
-            (click)="onRemove('active', active)"
-            alt="cross"
-          />
-        </div>
-      </ng-container>
-    </div>
-    <div class="footer-container">
-      <div class="items-left">{{ itemLeft }} items left</div>
-      <div class="filter-container">
-        <div class="filter">
-          <ng-container *ngFor="let f of filter">
-            <span
-              class="filter-item"
-              [class.checked]="f.checked"
-              (click)="onClickFilter(f.task)"
-              >{{ f.task }}</span
-            >
-          </ng-container>
-        </div>
-        <div class="clear" (click)="onClickClear()">Clear Completed</div>
       </div>
     </div>
   </div>

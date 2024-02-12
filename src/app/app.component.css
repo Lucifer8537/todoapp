@@ -1,10 +1,12 @@
 .container {
-  background-color: hsl(235, 21%, 11%);
-  background-image: url("../assets/bg-desktop-dark.jpg");
   background-repeat: no-repeat;
   background-size: contain;
-  height: 89%;
-  padding: 5% 30% 5% 30%;
+  min-height: -webkit-fill-available;
+  padding: 5% 0% 5% 0%;
+}
+.todo-container {
+  margin: 0 auto;
+  max-width: 615px;
 }
 .header-container {
   display: flex;
@@ -19,9 +21,9 @@
   letter-spacing: 20px;
 }
 .header-icon {
+  cursor: pointer;
 }
 .create-task-container {
-  background-color: hsl(235, 24%, 19%);
   padding: 20px 20px;
   border-radius: 5px;
   margin-top: 5%;
@@ -30,7 +32,6 @@
 }
 .total-task-container {
   display: grid;
-  background-color: hsl(235, 24%, 19%);
   border-radius: 5px;
   margin-top: 5%;
 }
@@ -57,15 +58,12 @@
   font-size: 20px;
   outline: 0;
   border: 0;
-  color: white;
 }
 .task-container {
-  background-color: hsl(235, 24%, 19%);
   cursor: grab;
   display: flex;
   padding: 15px 20px;
   font-size: 18px;
-  color: white;
   align-items: center;
 }
 .completedTask {
@@ -92,7 +90,6 @@
 }
 .footer-container {
   padding: 20px 20px;
-  color: white;
   font-weight: 200;
   display: flex;
   justify-content: space-between;
@@ -116,6 +113,10 @@
 .filter-item,
 .clear {
   opacity: 0.4;
+}
+.filter-item:hover,
+.clear:hover {
+  opacity: 1;
 }
 .checked {
   color: hsl(220, 98%, 61%);
@@ -141,4 +142,76 @@
   opacity: 1;
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+.dark-task {
+  background-color: hsl(235, 24%, 19%);
+  color: white;
+}
+
+.light-mode {
+  background-color: hsl(0, 0%, 98%);
+  color: black;
+}
+
+.dark-mode {
+  background-color: hsl(235, 21%, 11%);
+  background-image: url("../assets/bg-desktop-dark.jpg");
+  .create-task-container {
+    background-color: hsl(235, 24%, 19%);
+  }
+  .total-task-container {
+    background-color: hsl(235, 24%, 19%);
+  }
+  .create-task {
+    border-color: white;
+  }
+  .create-task-input {
+    color: white;
+  }
+  .task-container {
+    background-color: hsl(235, 24%, 19%);
+    color: white;
+  }
+  .footer-container {
+    color: white;
+  }
+  .complete-border {
+    border-color: rgba(256, 256, 256, 0.1);
+  }
+}
+.light-mode {
+  background-image: url("../assets/bg-desktop-light.jpg");
+  background-color: hsl(236, 33%, 92%);
+
+  .create-task-container {
+    background-color: hsl(0, 0%, 98%);
+  }
+  .create-task {
+    border-color: hsl(236, 9%, 61%);
+  }
+  .create-task-input {
+    color: black;
+  }
+  .total-task-container {
+    background-color: hsl(0, 0%, 98%);
+  }
+  .task-container {
+    background-color: hsl(0, 0%, 98%);
+    color: black;
+  }
+  .complete-border {
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  .footer-container {
+    color: black;
+  }
+  .items-left {
+    font-weight: 400;
+    opacity: 0.4;
+  }
+  .clear {
+    font-weight: 400;
+    opacity: 0.4;
+  }
 }
