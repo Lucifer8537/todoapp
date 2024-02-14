@@ -17,7 +17,7 @@ interface filterConfig {
 export class AppComponent implements OnInit {
   newTask!: string;
   isTaskCreationFinal = false;
-  isDarkMode = !true;
+  isDarkMode = true;
   activeTask: string[] = [];
   completedTask: string[] = [];
   itemLeft!: number;
