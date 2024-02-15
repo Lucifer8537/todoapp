@@ -120,12 +120,6 @@
   opacity: 1;
 }
 
-.cross {
-  margin-left: auto;
-  opacity: 0;
-  cursor: pointer;
-}
-
 .dark-task {
   background-color: hsl(235, 24%, 19%);
   color: white;
@@ -134,6 +128,9 @@
 .light-task {
   background-color: hsl(0, 0%, 98%);
   color: black;
+}
+.cross {
+  margin-left: auto;
 }
 
 .dark-mode {
@@ -203,6 +200,10 @@
   .filter-item:hover,
   .clear:hover {
     opacity: 1;
+  }
+  .cross {
+    opacity: 0;
+    cursor: pointer;
   }
   .task-container:hover .cross {
     opacity: 1;
