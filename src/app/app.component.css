@@ -222,9 +222,24 @@
 @media (max-width: 678px) {
   .dark-mode {
     background-image: url("../assets/bg-mobile-dark.jpg");
+    .filter {
+      background-color: hsl(235, 24%, 19%);
+      color: white;
+    }
   }
   .light-mode {
     background-image: url("../assets/bg-mobile-light.jpg");
+    .filter {
+      background-color: hsl(0, 0%, 98%);
+      color: black;
+    }
+  }
+  .filter {
+    padding: 20px;
+    font-size: 80%;
+    justify-content: center;
+    margin-top: 5%;
+    border-radius: 5px;
   }
   .container {
     padding: 10% 5%;

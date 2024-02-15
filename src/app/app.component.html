@@ -80,10 +80,10 @@
           </div>
         </ng-container>
       </div>
-      <!-- <div class="footer-container">
+      <div class="footer-container">
         <div class="items-left">{{ itemLeft }} items left</div>
         <div class="filter-container">
-          <div class="filter">
+          <div class="filter" *ngIf="!isMobileView">
             <ng-container *ngFor="let f of filter">
               <span
                 class="filter-item"
@@ -95,7 +95,17 @@
           </div>
           <div class="clear" (click)="onClickClear()">Clear Completed</div>
         </div>
-      </div> -->
+      </div>
+    </div>
+    <div class="filter" *ngIf="isMobileView">
+      <ng-container *ngFor="let f of filter">
+        <span
+          class="filter-item"
+          [class.checked]="f.checked"
+          (click)="onClickFilter(f.task)"
+          >{{ f.task }}</span
+        >
+      </ng-container>
     </div>
   </div>
 </div>

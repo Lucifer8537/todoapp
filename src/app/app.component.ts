@@ -3,7 +3,7 @@ import {
   CdkDragStart,
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 interface filterConfig {
   checked: boolean;
@@ -38,7 +38,19 @@ export class AppComponent implements OnInit {
   isActive = true;
   isComplete = true;
   isDragging = false;
+  isMobileView!: boolean;
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    console.log('innerWidth : ', window.innerWidth);
+    console.log('outerwidth : ', window.outerWidth);
+    if (window.innerWidth < 678 || window.outerWidth < 678) {
+      this.isMobileView = true;
+    } else {
+      this.isMobileView = false;
+    }
+  }
   ngOnInit(): void {
+    this.onResize();
     this.completedTask = ['Complete online JavaScript course'];
     this.activeTask = [
       'Jog around the park 3x',
